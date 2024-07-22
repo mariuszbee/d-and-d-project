@@ -1,3 +1,4 @@
+import { projectState } from '../controller/ProjectState.js';
 import { Autobind } from '../decorators/Autobind.js';
 import { Validatable } from '../types/Validatable.js';
 import { validate } from '../utils/validate.js';
@@ -80,7 +81,7 @@ export class ProjectInput {
     const userInput = this.gatherUserInput();
     if (Array.isArray(userInput)) {
       const [title, description, people] = userInput;
-      console.log(title, description, people);
+      projectState.addProject(title, description, people);
       this.clearInputs();
     }
   }
