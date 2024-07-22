@@ -1,6 +1,6 @@
-import { Autobind } from '../decorators/Autobind';
-import { Validatable } from '../types/Validatable';
-import { validate } from '../utils/validate';
+import { Autobind } from '../decorators/Autobind.js';
+import { Validatable } from '../types/Validatable.js';
+import { validate } from '../utils/validate.js';
 
 export class ProjectInput {
   templateElement: HTMLTemplateElement;
