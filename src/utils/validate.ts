@@ -1,8 +1,6 @@
 import { Validatable } from '../types/Validatable.js';
 
 export function validate(validatableInput: Validatable) {
-  console.log('validate' + validatableInput);
-
   let isValid = true;
   if (validatableInput.required) {
     isValid = isValid && validatableInput.value.toString().trim().length !== 0;
