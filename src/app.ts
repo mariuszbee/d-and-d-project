@@ -1,3 +1,5 @@
+import { Autobind } from './decorators/Autobind';
+
 class ProjectInput {
   templateElement: HTMLTemplateElement;
   hostElement: HTMLDivElement;
@@ -35,9 +37,9 @@ class ProjectInput {
     event.preventDefault();
     console.log(this.titleInputElement.value);
   }
-
+  @Autobind
   private configure() {
-    this.element.addEventListener('submit', this.submitHandler.bind(this));
+    this.element.addEventListener('submit', this.submitHandler);
   }
   private attach() {
     this.hostElement.insertAdjacentElement('afterbegin', this.element);
