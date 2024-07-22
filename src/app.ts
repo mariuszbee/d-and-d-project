@@ -1,4 +1,4 @@
-import { Autobind } from './decorators/Autobind';
+import { Autobind } from './decorators/Autobind.js';
 
 class ProjectInput {
   templateElement: HTMLTemplateElement;
@@ -32,12 +32,12 @@ class ProjectInput {
     this.configure();
     this.attach();
   }
-
+  @Autobind
   private submitHandler(event: Event) {
     event.preventDefault();
     console.log(this.titleInputElement.value);
   }
-  @Autobind
+
   private configure() {
     this.element.addEventListener('submit', this.submitHandler);
   }
@@ -46,4 +46,4 @@ class ProjectInput {
   }
 }
 
-const prjInput = new ProjectInput();
+const projectInput = new ProjectInput();
