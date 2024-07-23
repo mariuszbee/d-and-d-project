@@ -2,18 +2,20 @@
 
 import { Listener } from '../types/Listeners.js';
 import { Project, ProjectStatus } from '../types/Project.js';
+import { State } from './State.js';
 
 /**
  *
  * import ShortUniqueId from 'short-unique-id';
  * const { randomUUID } = new ShortUniqueId({ length: 10 });
  **/
-export class ProjectState {
-  private listeners: Listener[] = [];
+export class ProjectState extends State<Project> {
   private projects: Project[] = [];
   private static instance: ProjectState;
 
-  private constructor() {}
+  private constructor() {
+    super();
+  }
 
   static getInstance() {
     if (this.instance) {
@@ -21,10 +23,6 @@ export class ProjectState {
     }
     this.instance = new ProjectState();
     return this.instance;
-  }
-
-  addListeners(listenerFn: Listener) {
-    this.listeners.push(listenerFn);
   }
 
   addProject(title: string, description: string, numOfPeople: number) {
