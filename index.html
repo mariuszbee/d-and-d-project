@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./app.css" />
   </head>
   <body>
-    <template id="form-control">
+    <template id="project-input">
       <form action="">
         <div class="form-control">
           <label for="title">Title</label>
@@ -25,7 +25,11 @@
       </form>
     </template>
     <template id="single-project">
-      <li></li>
+      <li draggable="true">
+        <h2></h2>
+        <h3></h3>
+        <p></p>
+      </li>
     </template>
     <template id="project-list">
       <section class="projects">
@@ -36,6 +40,6 @@
       </section>
     </template>
     <div id="app"></div>
-    <script src="/dist/app.js" defer></script>
+    <script src="/dist/bundle.js" defer></script>
   </body>
 </html>
