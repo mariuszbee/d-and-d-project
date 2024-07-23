@@ -1,10 +1,11 @@
 import { projectState } from '../controller/ProjectState.js';
+import { Project } from '../types/Project.js';
 
 export class ProjectList {
   templateElement: HTMLTemplateElement;
   hostElement: HTMLDivElement;
   element: HTMLElement;
-  assignedProjects: any[];
+  assignedProjects: Project[];
 
   constructor(private type: 'active' | 'finished') {
     this.templateElement = document.getElementById(
@@ -19,7 +20,7 @@ export class ProjectList {
     );
     this.element = importedNode.firstElementChild as HTMLElement;
     this.element.id = `${this.type}-projects`;
-    projectState.addListeners((projects: any[]) => {
+    projectState.addListeners((projects: Project[]) => {
       this.assignedProjects = projects;
       this.renderProjects();
     });

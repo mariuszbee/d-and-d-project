@@ -1,13 +1,16 @@
 /** add the following code **/
 
+import { Listener } from '../types/Listeners.js';
+import { Project, ProjectStatus } from '../types/Project.js';
+
 /**
  *
  * import ShortUniqueId from 'short-unique-id';
  * const { randomUUID } = new ShortUniqueId({ length: 10 });
  **/
 export class ProjectState {
-  private listeners: any[] = [];
-  private projects: any[] = [];
+  private listeners: Listener[] = [];
+  private projects: Project[] = [];
   private static instance: ProjectState;
 
   private constructor() {}
@@ -20,17 +23,18 @@ export class ProjectState {
     return this.instance;
   }
 
-  addListeners(listenerFn: Function) {
+  addListeners(listenerFn: Listener) {
     this.listeners.push(listenerFn);
   }
 
   addProject(title: string, description: string, numOfPeople: number) {
-    const newProject = {
-      id: Math.random().toString(),
+    const newProject = new Project(
+      Math.random().toString(),
       title,
       description,
-      people: numOfPeople,
-    };
+      numOfPeople,
+      ProjectStatus.Active
+    );
     this.projects.push(newProject);
     for (const listenerFn of this.listeners) {
       listenerFn(this.projects.slice());
