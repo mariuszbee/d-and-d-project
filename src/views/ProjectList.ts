@@ -1,6 +1,7 @@
 import { projectState } from '../controller/ProjectState.js';
 import { Project, ProjectStatus } from '../types/Project.js';
 import { Component } from './Component.js';
+import { ProjectItem } from './ProjectItem.js';
 
 export class ProjectList extends Component<HTMLDivElement, HTMLElement> {
   assignedProjects: Project[];
@@ -38,9 +39,7 @@ export class ProjectList extends Component<HTMLDivElement, HTMLElement> {
     )! as HTMLUListElement;
     listEl.innerHTML = '';
     for (const projectItem of this.assignedProjects) {
-      const listItem = document.createElement('li');
-      listItem.textContent = projectItem.title;
-      listEl.appendChild(listItem);
+      new ProjectItem(this.element.querySelector('ul')!.id, projectItem);
     }
   }
 }

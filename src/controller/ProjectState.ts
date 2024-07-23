@@ -1,14 +1,12 @@
 /** add the following code **/
-
-import { Listener } from '../types/Listeners.js';
-import { Project, ProjectStatus } from '../types/Project.js';
-import { State } from './State.js';
-
 /**
  *
  * import ShortUniqueId from 'short-unique-id';
  * const { randomUUID } = new ShortUniqueId({ length: 10 });
  **/
+import { Project, ProjectStatus } from '../types/Project.js';
+import { State } from './State.js';
+
 export class ProjectState extends State<Project> {
   private projects: Project[] = [];
   private static instance: ProjectState;
