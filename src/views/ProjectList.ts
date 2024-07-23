@@ -1,5 +1,5 @@
 import { projectState } from '../controller/ProjectState.js';
-import { Project } from '../types/Project.js';
+import { Project, ProjectStatus } from '../types/Project.js';
 
 export class ProjectList {
   templateElement: HTMLTemplateElement;
@@ -21,7 +21,13 @@ export class ProjectList {
     this.element = importedNode.firstElementChild as HTMLElement;
     this.element.id = `${this.type}-projects`;
     projectState.addListeners((projects: Project[]) => {
-      this.assignedProjects = projects;
+      const relevantProjects = projects.filter((project) => {
+        if (this.type === 'active') {
+          return project.status === ProjectStatus.Active;
+        }
+        return project.status === ProjectStatus.Finished;
+      });
+      this.assignedProjects = relevantProjects;
       this.renderProjects();
     });
 
@@ -33,6 +39,7 @@ export class ProjectList {
     const listEl = document.getElementById(
       `${this.type}-projects-list`
     )! as HTMLUListElement;
+    listEl.innerHTML = '';
     for (const projectItem of this.assignedProjects) {
       const listItem = document.createElement('li');
       listItem.textContent = projectItem.title;
