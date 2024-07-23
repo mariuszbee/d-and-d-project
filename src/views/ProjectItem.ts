@@ -1,7 +1,12 @@
+import { Autobind } from '../decorators/Autobind.js';
+import { Draggable } from '../types/Draggable.js';
 import { Project } from '../types/Project.js';
 import { Component } from './Component.js';
 
-export class ProjectItem extends Component<HTMLUListElement, HTMLLIElement> {
+export class ProjectItem
+  extends Component<HTMLUListElement, HTMLLIElement>
+  implements Draggable
+{
   private project: Project;
 
   get persons() {
@@ -30,12 +35,12 @@ export class ProjectItem extends Component<HTMLUListElement, HTMLLIElement> {
     this.element.querySelector('h3')!.textContent = this.persons + ' assigned';
     this.element.querySelector('p')!.textContent = this.project.description;
   }
-
+  @Autobind
   dragStartHandler(event: DragEvent) {
     event.dataTransfer!.setData('text/plain', this.project.id);
     event.dataTransfer!.effectAllowed = 'move';
   }
-
+  @Autobind
   dragEndHandler(_: DragEvent) {
     console.log('DragEnd');
   }
