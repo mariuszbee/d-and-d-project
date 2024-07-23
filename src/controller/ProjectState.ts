@@ -4,8 +4,8 @@
  * import ShortUniqueId from 'short-unique-id';
  * const { randomUUID } = new ShortUniqueId({ length: 10 });
  **/
-import { Project, ProjectStatus } from '../types/Project.js';
-import { State } from './State.js';
+import { Project, ProjectStatus } from '../types/Project';
+import { State } from './State';
 
 export class ProjectState extends State<Project> {
   private projects: Project[] = [];
